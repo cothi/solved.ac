@@ -14,8 +14,6 @@ func main() {
 	var n int
 	fmt.Scanf("%d", &n)
 	vec := make([]int, n+1)
-	vec[0] = 0
-	vec[1] = 0
 
 	for i := 2; i <= n; i++ {
 		vec[i] = vec[i-1] + 1
