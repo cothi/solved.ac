@@ -1,0 +1,15 @@
+fn main() {
+    let mut b = String::new();
+    std::io::stdin().read_line(&mut b).unwrap();
+    let n: usize = b.trim().parse().unwrap();
+    let mut v: Vec<u32> = vec![0; n + 1];
+
+    for i in 2..n+1 {
+        v[i] = v[i-1] + 1;
+        if i % 2 == 0 {v[i] = u32::min(v[i], v[i/2] + 1);}
+        if i % 3 == 0 {v[i] = u32::min(v[i], v[i/3] + 1);}
+    }
+
+    print!("{}", v[n]);
+    
+}
