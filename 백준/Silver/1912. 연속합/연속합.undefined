@@ -1,0 +1,35 @@
+fn max(a: i32, b: i32) -> i32 {
+    if a > b {
+        return a;
+    }
+    b
+}
+fn down_top(v: Vec<i32>, n: usize) -> i32 {
+    let mut dp = vec![0; n + 1];
+    let mut max_num = v[0];
+       
+    dp[0] = v[0];
+    for i in 1..n {
+        dp[i] = max(dp[i - 1] + v[i], v[i]);
+        max_num = max(dp[i], max_num)
+    }
+
+    max_num
+}
+
+fn main() {
+    let mut n = String::new();
+    let mut split_line = String::new();
+
+    std::io::stdin().read_line(&mut n).unwrap();
+    std::io::stdin().read_line(&mut split_line).unwrap();
+
+    let n: usize = n.trim().parse().unwrap();
+    let v: Vec<i32> = split_line
+        .split(' ')
+        .map(|x| x.trim().parse().unwrap())
+        .collect();
+
+    let res = down_top(v, n);
+    println!("{}", res);
+}
