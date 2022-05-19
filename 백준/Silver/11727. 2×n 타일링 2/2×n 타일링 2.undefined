@@ -1,0 +1,27 @@
+/*
+ * 1 1
+ * 2 3
+ * 3 5
+ * 4 11
+ */
+
+fn down_top(n: usize) -> i32 {
+    let mut v: Vec<i32> = vec![0; n+1];
+    v[0] = 1;
+    v[1] = 3;
+
+    for i in 2..n+1 {
+        v[i] = (v[i - 2] * 2 + v[i - 1]) % 10007;
+    }
+    v[n - 1]
+}
+
+fn main() {
+    let mut n = String::new();
+    std::io::stdin().read_line(&mut n).unwrap();
+    let n: usize = n.trim().parse().unwrap();
+
+    let res: i32 = down_top(n);
+
+    println!("{}", res);
+}
