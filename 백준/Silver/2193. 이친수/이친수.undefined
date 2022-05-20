@@ -1,0 +1,26 @@
+/*
+1. 1
+2. 10
+3. 100 101
+4. 1000 1001 1010
+*/
+
+fn down_top(n: usize) -> u128 {
+    let mut v = vec![0; 91];
+    v[0] = 0;
+    v[1] = 1;
+    v[2] = 1;
+
+    for i in 3..n + 1 {
+        v[i] = v[i - 1] + v[i - 2];
+    }
+    v[n]
+}
+
+fn main() {
+    let mut n_input = String::new();
+    std::io::stdin().read_line(&mut n_input).unwrap();
+    let n: usize = n_input.trim().parse().unwrap();
+    let res = down_top(n);
+    println!("{}", res);
+}
